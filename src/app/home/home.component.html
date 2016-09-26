@@ -4,7 +4,7 @@
       Your Time today <span [class]="difference_class">{{getDifference()}}</span>
     </h3>
 
-    <progressbar [value]="reached" [max]="goal" min="0">{{reached}} / {{goal}}</progressbar>
+    <progressbar [value]="reached" [max]="goal" min="0" [type]="progress_type">{{reached}} / {{goal}}</progressbar>
 
     <h4>
       Your Tickets
