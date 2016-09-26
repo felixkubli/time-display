@@ -4,15 +4,15 @@
       Your Time today <span [class]="difference_class">{{getDifference()}}</span>
     </h3>
 
-    <progressbar [value]="reached" [max]="goal" min="0" [type]="progress_type">{{reached}} / {{goal}}</progressbar>
+    <progressbar [value]="this.reached" [max]="time.goal" min="0" [type]="progress_type">{{this.reached}} / {{time.goal}}</progressbar>
 
     <h4>
       Your Tickets
     </h4>
     <table class="table">
-      <tr>
-        <td>6124 Investment Time</td>
-        <td>3.33 h</td>
+      <tr *ngFor="let t of time.tickets">
+        <td>{{t.message}}</td>
+        <td>{{t.duration}} h</td>
       </tr>
     </table>
   </div>

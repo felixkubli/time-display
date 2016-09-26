@@ -9,18 +9,23 @@ import {TimeToday} from '../shared';
 })
 
 export class HomeComponent {
-  goal: number;
-  reached: number;
   difference_class: string = 'difference';
   progress_type: string = 'primary';
+  reached: number = 0;
 
   constructor(private time: TimeToday) {
-    this.goal = time.goal;
-    this.reached = time.reached;
+    this.getReached();
+  }
+
+  getReached() {
+    this.time.tickets.forEach((ticket) => {
+      this.reached += ticket.duration;
+    });
+    return this.reached;
   }
 
   public getDifference() {
-    let difference: number = this.reached - this.goal;
+    let difference: number = this.reached - this.time.goal;
     difference = Math.round(difference * 100) / 100;
 
     if (difference >= 0) {
