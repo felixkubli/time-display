@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-7">
     <h3>
-      Your Time today
+      Your Time today <span [class]="difference_class">{{getDifference()}}</span>
     </h3>
 
     <progressbar [value]="reached" [max]="goal" min="0">{{reached}} / {{goal}}</progressbar>

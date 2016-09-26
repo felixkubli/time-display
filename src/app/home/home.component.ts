@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {TimeToday} from "../shared";
+import {TimeToday} from '../shared';
 
 @Component({
   selector: 'my-home',
@@ -11,9 +11,22 @@ import {TimeToday} from "../shared";
 export class HomeComponent {
   goal: number;
   reached: number;
+  difference_class: string = 'difference';
 
   constructor(private time: TimeToday) {
     this.goal = time.goal;
     this.reached = time.reached;
+  }
+
+  public getDifference() {
+    let difference: number = this.reached - this.goal;
+    difference = Math.round(difference * 100) / 100;
+    if (difference > 0) {
+      this.difference_class = 'difference positive';
+      return '+' + difference;
+    } else {
+      this.difference_class = 'difference negative';
+      return difference;
+    }
   }
 }
