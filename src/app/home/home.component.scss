@@ -1,20 +1,16 @@
 // component styles are encapsulated and only applied to their components
 * {
-  //color: #00cd00;
-}
 
-h2, h3, h4{
-  //color: #00cd00;
 }
 
 .difference{
-  margin-left: 20px;
+  padding-left: 1em;
 
   &.positive{
     color: green;
   }
 
   &.negative{
-    color: red;
+    color: rgba(215, 0, 0, 0.76);
   }
 }
