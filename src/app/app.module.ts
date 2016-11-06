@@ -11,6 +11,8 @@ import { routing } from './app.routing';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 import {Ng2BootstrapModule} from 'ng2-bootstrap';
+import {TimeTodayComponent} from './time_today/time_today.component';
+import {TimeTodayService} from './time_today/time_today.service';
 
 @NgModule({
   imports: [
@@ -23,10 +25,12 @@ import {Ng2BootstrapModule} from 'ng2-bootstrap';
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    TimeTodayComponent
   ],
   providers: [
-    ApiService
+    ApiService,
+    TimeTodayService
   ],
   bootstrap: [AppComponent]
 })
