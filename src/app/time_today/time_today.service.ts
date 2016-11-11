@@ -7,14 +7,18 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class TimeTodayService {
-  url: string = 'https://toggl.com/reports/api/v2/summary?user_agent=time_display&since=2016-11-11&until=2016-11-11&workspace_id=1121133';
-  token: string = '*user-token*';
+  token: string = 'user-token';
+  today: string = '';
+  url: string = '';
+  workspace_id: string = '1121133';
 
   mock: string = 'assets/time-today.json';
 
   constructor(private http: Http) { }
 
   getEntries(): Observable<TimeToday> {
+    this.today = new Date().toJSON().slice(0, 10);
+    this.setUrl();
     return this.http.get(this.mock) // this is the mock request
       .map(response => new TimeToday().deserialize(response.json()));
     // return this.http.get(this.url, {headers: this.getHeaders()})
@@ -27,5 +31,12 @@ export class TimeTodayService {
     headers.append('Accept', 'application/json');
     headers.append('Authorization', 'Basic ' + btoa(this.token + ':' + 'api_token'));
     return headers;
+  }
+
+  private setUrl(): string {
+    return this.url = 'https://toggl.com/reports/api/v2/summary?user_agent=time_display&since=' +
+      this.today + '&until=' +
+      this.today + '&workspace_id=' +
+      this.workspace_id + '';
   }
 }
