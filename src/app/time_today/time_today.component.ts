@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { TimeTodayService } from './time_today.service';
 import { TimeToday } from './time_today.model';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'my-time-today',
@@ -15,7 +16,7 @@ export class TimeTodayComponent implements OnInit {
   reached: number = 0;
   difference;
   goal: number = 8.4;
-  timeToday: TimeToday[] = [];
+  timeToday: TimeToday = new TimeToday();
   subscription;
 
   constructor(private timeTodayService: TimeTodayService) {
@@ -23,7 +24,10 @@ export class TimeTodayComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subscription = this.timeTodayService.getEntries().subscribe(timeToday => this.timeToday = timeToday);
+    this.subscription = this.timeTodayService.getEntries().subscribe(timeToday => {
+      console.log('we got', timeToday);
+      this.timeToday = timeToday;
+    });
   }
   ngDoCheck() {
     this.getReached();
@@ -36,16 +40,11 @@ export class TimeTodayComponent implements OnInit {
   }
 
   getReached() {
-    this.reached = 0;
-    this.timeToday.forEach((ticket) => {
-      this.reached += ticket.duration;
-    });
-
-    return this.reached;
+    this.reached = this.timeToday.total_grand;
   }
 
   public getDifference() {
-    this.difference = Math.round((this.reached - this.goal) * 100) / 100;
+    this.difference = _.round((this.reached - this.goal), 1);
 
     if (this.difference >= 0) {
       this.difference_class = 'difference positive';

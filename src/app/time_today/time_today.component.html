@@ -12,14 +12,16 @@
 </div>
 
 
-<progressbar [value]="this.reached" [max]="this.goal" min="0" [type]="progress_type">{{this.reached}} / {{this.goal}}</progressbar>
+<progressbar [value]="this.reached" [max]="this.goal" min="0" [type]="progress_type">
+  {{this.reached}} / {{this.goal}}
+</progressbar>
 
 <h4>
   Your Tickets
 </h4>
-<table class="table">
-  <tr *ngFor="let t of timeToday">
-    <td>{{t.description}}</td>
-    <td>{{t.duration}} h</td>
+<table class="table" *ngFor="let t of timeToday.data">
+  <tr *ngFor="let i of t.items">
+    <td>{{i.title.time_entry}}</td>
+    <td>{{i.time}} h</td>
   </tr>
 </table>
