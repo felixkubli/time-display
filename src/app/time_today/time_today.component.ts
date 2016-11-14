@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TimeTodayService } from './time_today.service';
 import { TimeToday } from './time_today.model';
 import * as _ from 'lodash';

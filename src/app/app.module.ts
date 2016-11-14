@@ -10,9 +10,11 @@ import { ApiService } from './shared';
 import { routing } from './app.routing';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
-import {Ng2BootstrapModule} from 'ng2-bootstrap';
-import {TimeTodayComponent} from './time_today/time_today.component';
-import {TimeTodayService} from './time_today/time_today.service';
+import { Ng2BootstrapModule } from 'ng2-bootstrap';
+import { TimeTodayComponent } from './time_today/time_today.component';
+import { TimeTodayService } from './time_today/time_today.service';
+import { DetailsComponent } from './details/details.component';
+import { WorkspaceService } from './details/workspace.service';
 
 @NgModule({
   imports: [
@@ -26,11 +28,13 @@ import {TimeTodayService} from './time_today/time_today.service';
     AppComponent,
     HomeComponent,
     AboutComponent,
-    TimeTodayComponent
+    TimeTodayComponent,
+    DetailsComponent
   ],
   providers: [
     ApiService,
-    TimeTodayService
+    TimeTodayService,
+    WorkspaceService
   ],
   bootstrap: [AppComponent]
 })
