@@ -14,10 +14,7 @@ export class TimeTodayService {
 
   mock: string = 'assets/time-today.json';
 
-  constructor(private http: Http) {
-    this.workspace_id = localStorage.getItem('workspace_id');
-    this.token = localStorage.getItem('token');
-  }
+  constructor(private http: Http) { }
 
   getEntries(): Observable<TimeToday> {
     this.today = new Date().toJSON().slice(0, 10);
@@ -32,7 +29,7 @@ export class TimeTodayService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
-    headers.append('Authorization', 'Basic ' + btoa(this.token + ':' + 'api_token'));
+    headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem('token') + ':' + 'api_token'));
     return headers;
   }
 
@@ -40,6 +37,6 @@ export class TimeTodayService {
     return this.url = 'https://toggl.com/reports/api/v2/summary?user_agent=time_display&since=' +
       this.today + '&until=' +
       this.today + '&workspace_id=' +
-      this.workspace_id + '';
+      localStorage.getItem('workspace_id') + '';
   }
 }

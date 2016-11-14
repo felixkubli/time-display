@@ -25,7 +25,6 @@ export class TimeTodayComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.timeTodayService.getEntries().subscribe(timeToday => {
-      console.log('we got', timeToday);
       this.timeToday = timeToday;
     });
   }

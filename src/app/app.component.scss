@@ -25,13 +25,13 @@ main {
 }
 
 .content {
-  min-height: calc(100vh - 72px);
-  margin-bottom: - $footer-height;
+  min-height: calc(100vh - 72px - 100px);
+  //margin-bottom: - $footer-height;
 }
 
 footer {
   color: white;
-  height: $footer-height;
+  height: 100px;
   padding: 10px;
   background: #222222;
   bottom: 0;
