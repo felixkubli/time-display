@@ -5,7 +5,10 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
-    "noEmitHelpers": true
+    "noEmitHelpers": true,
+    "types": [
+      "lodash"
+    ]
   },
   "compileOnSave": false,
   "buildOnSave": false,

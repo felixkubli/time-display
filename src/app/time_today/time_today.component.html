@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-sm-10">
+    <h3>
+      Your Time today <span [class]="difference_class">{{this.difference}}</span>
+    </h3>
+  </div>
+  <div class="col-sm-2">
+    <h3 class="text-right">
+      <button (click)="reSubscribe()" class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span></button>
+    </h3>
+  </div>
+</div>
+
+
+<progressbar [value]="this.reached" [max]="this.goal" min="0" [type]="progress_type">
+  {{this.reached}} / {{this.goal}}
+</progressbar>
+
+<h4>
+  Your Tickets
+</h4>
+<table class="table" *ngFor="let t of timeToday.data">
+  <tr *ngFor="let i of t.items">
+    <td>{{i.title.time_entry}}</td>
+    <td>{{i.time}} h</td>
+  </tr>
+</table>
