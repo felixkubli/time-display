@@ -22,7 +22,7 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     this.token.apiToken = localStorage.getItem('token');
-    this.workspace_id = localStorage.getItem('workspace_id');
+    this.workspace_id = +localStorage.getItem('workspace_id');
   }
 
   onSubmitToken() {
