@@ -20,7 +20,7 @@ export class TimeTodayComponent implements OnInit {
   subscription;
 
   constructor(private timeTodayService: TimeTodayService) {
-
+    this.goal = parseFloat(localStorage.getItem('goal_today'));
   }
 
   ngOnInit() {
@@ -40,6 +40,12 @@ export class TimeTodayComponent implements OnInit {
 
   getReached() {
     this.reached = this.timeToday.total_grand;
+  }  
+
+  setNewGoal(goal) {
+    this.goal = goal;
+    console.log(this.goal);
+    localStorage.setItem('goal_today', <string>this.goal);
   }
 
   public getDifference() {

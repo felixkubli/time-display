@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <form (ngSubmit)="onSubmitToken()">
+    <form (ngSubmit)="onSubmitToken()" #tokenForm="ngForm">
       <div class="form-group">
         <label for="token">Toggl API-Token</label>
         <input type="text" id="token" class="form-control" name="apiToken" [(ngModel)]="token.apiToken" required>
@@ -11,7 +11,7 @@
     </form>
 
     <div [hidden]="!tokenValid()">
-      <form (ngSubmit)="onSubmitID()">
+      <form (ngSubmit)="onSubmitID()" #workspaceForm="ngForm">
         <div class="form-group">
           <label for="workspace_id">Workspace</label>
           <select name="workspace_id" id="workspace_id" class="form-control" [(ngModel)]="workspace_id" required>
