@@ -5,7 +5,7 @@
     <form (ngSubmit)="onSubmitToken()" #tokenForm="ngForm">
       <div class="form-group">
         <label for="token">Toggl API-Token</label>
-        <input type="text" id="token" class="form-control" name="apiToken" [(ngModel)]="token.apiToken" required>
+        <input type="text" id="token" class="form-control" name="token" [(ngModel)]="token" required>
       </div>
       <input type="submit" class="btn btn-default">
     </form>
