@@ -8,9 +8,7 @@ import { Workspace } from './workspace.model';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
-  token: any = {
-    apiToken: null
-  };
+  token: string = '';
   workspaces: Workspace[] = [];
   workspace_id: number;
   subscription = null;
@@ -21,13 +19,13 @@ export class DetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.token.apiToken = localStorage.getItem('token');
+    this.token = localStorage.getItem('token');
     this.workspace_id = +localStorage.getItem('workspace_id');
   }
 
   onSubmitToken() {
-    localStorage.setItem('token', this.token.apiToken);
-    this.workspaceService.setToken(this.token.apiToken);
+    localStorage.setItem('token', this.token);
+    this.workspaceService.setToken(this.token);
     this.subscription = this.workspaceService.getWorkspace().subscribe(workspaces => this.workspaces = workspaces);
   }
 
