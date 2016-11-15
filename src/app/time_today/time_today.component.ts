@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TimeTodayService } from './time_today.service';
 import { TimeToday } from './time_today.model';
 import * as _ from 'lodash';
@@ -20,12 +20,11 @@ export class TimeTodayComponent implements OnInit {
   subscription;
 
   constructor(private timeTodayService: TimeTodayService) {
-
+    this.goal = parseFloat(localStorage.getItem('goal_today'));
   }
 
   ngOnInit() {
     this.subscription = this.timeTodayService.getEntries().subscribe(timeToday => {
-      console.log('we got', timeToday);
       this.timeToday = timeToday;
     });
   }
@@ -41,6 +40,12 @@ export class TimeTodayComponent implements OnInit {
 
   getReached() {
     this.reached = this.timeToday.total_grand;
+  }  
+
+  setNewGoal(goal) {
+    this.goal = goal;
+    console.log(this.goal);
+    localStorage.setItem('goal_today', <string>this.goal);
   }
 
   public getDifference() {

@@ -1,0 +1,27 @@
+<h2>Enter the required Information</h2>
+
+<div class="row">
+  <div class="col-sm-8">
+    <form (ngSubmit)="onSubmitToken()" #tokenForm="ngForm">
+      <div class="form-group">
+        <label for="token">Toggl API-Token</label>
+        <input type="text" id="token" class="form-control" name="apiToken" [(ngModel)]="token.apiToken" required>
+      </div>
+      <input type="submit" class="btn btn-default">
+    </form>
+
+    <div [hidden]="!tokenValid()">
+      <form (ngSubmit)="onSubmitID()" #workspaceForm="ngForm">
+        <div class="form-group">
+          <label for="workspace_id">Workspace</label>
+          <select name="workspace_id" id="workspace_id" class="form-control" [(ngModel)]="workspace_id" required>
+            <option *ngFor="let w of workspaces" [value]="w.id">{{w.name}}</option>
+          </select>
+        </div>
+        <input type="submit" class="btn btn-default">
+      </form>
+    </div>
+
+    <div class="alert alert-success success" [hidden]="!updated">Your details have been updated</div>
+  </div>
+</div>

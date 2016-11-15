@@ -1,6 +1,13 @@
 <div class="page-header"><h1>How much do you work?</h1></div>
 <div class="row">
   <div class="col-sm-7">
-		<my-time-today></my-time-today>
+		<my-time-today #time></my-time-today>
+	</div>
+	<div class="col-sm-4">
+    <div class="form-inline goal-form">
+      <label for="input-goal">Your Goal today</label>
+			<input type="text" class="form-control" id="input-goal" [(ngModel)]="input_goal">
+			<button (click)="time.setNewGoal(input_goal)" class="btn btn-default">Update</button>
+		</div>
 	</div>
 </div>
