@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { TimeToday } from './time_today.model';
 import { Observable } from 'rxjs/Rx';
+import * as moment from 'moment';
 
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class TimeTodayService {
   token: string = 'user-token';
-  today: string = '';
+  today: string;
   url: string = '';
   workspace_id: string = '';
 
@@ -16,8 +17,12 @@ export class TimeTodayService {
 
   constructor(private http: Http) { }
 
-  getEntries(): Observable<TimeToday> {
-    this.today = new Date().toJSON().slice(0, 10);
+  getEntries(date?: Date): Observable<TimeToday> {
+    if (!date) {
+      date = new Date();
+    }
+    this.today = moment(date).format('YYYY-MM-DD');
+
     this.setUrl();
     // return this.http.get(this.mock) // this is the mock request
     //   .map(response => new TimeToday().deserialize(response.json()));

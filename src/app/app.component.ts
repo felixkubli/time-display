@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-
-import { ApiService } from './shared';
+import { Component, ViewContainerRef } from '@angular/core';
 
 import '../style/app.scss';
 
@@ -12,7 +10,7 @@ import '../style/app.scss';
 export class AppComponent {
   url = 'https://github.com/preboot/angular2-webpack';
 
-  constructor(private api: ApiService) {
+  constructor(private viewContainerRef: ViewContainerRef) {
     // Do something with api
   }
 }
