@@ -15,6 +15,7 @@ import { TimeTodayComponent } from './time_today/time_today.component';
 import { TimeTodayService } from './time_today/time_today.service';
 import { DetailsComponent } from './details/details.component';
 import { WorkspaceService } from './details/workspace.service';
+import { DateTodayPipe } from './utils/date_today.pipe';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { WorkspaceService } from './details/workspace.service';
     HomeComponent,
     AboutComponent,
     TimeTodayComponent,
-    DetailsComponent
+    DetailsComponent,
+    DateTodayPipe
   ],
   providers: [
     ApiService,

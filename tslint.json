@@ -12,8 +12,7 @@
     "eofline": true,
     "forin": true,
     "indent": [
-      true,
-      "spaces"
+      true
     ],
     "label-position": true,
     "label-undefined": true,
@@ -106,8 +105,8 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "directive-selector-prefix": [true, "my"],
-    "component-selector-prefix": [true, "my"],
-    "pipe-naming": [true, "camelCase", "my"]
+//    "directive-selector-prefix": [true, "my"],
+//    "component-selector-prefix": [true, "my"],
+    "pipe-naming": [true, "camelCase"]
   }
 }

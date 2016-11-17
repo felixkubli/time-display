@@ -16,15 +16,16 @@ export class TimeTodayComponent implements OnInit {
   reached: number = 0;
   difference;
   goal: number = 8.4;
+  date: Date;
   timeToday: TimeToday = new TimeToday();
   subscription;
 
   constructor(private timeTodayService: TimeTodayService) {
-    this.goal = parseFloat(localStorage.getItem('goal_today'));
+    this.goal = parseFloat(localStorage.getItem('goal_today')) || 0;
   }
 
   ngOnInit() {
-    this.subscription = this.timeTodayService.getEntries().subscribe(timeToday => {
+    this.subscription = this.timeTodayService.getEntries(new Date()).subscribe(timeToday => {
       this.timeToday = timeToday;
     });
   }
@@ -35,17 +36,23 @@ export class TimeTodayComponent implements OnInit {
 
   reSubscribe() {
     this.subscription.unsubscribe();
-    this.subscription = this.timeTodayService.getEntries().subscribe(timeToday => this.timeToday = timeToday);
+    this.subscription = this.timeTodayService.getEntries((this.date || new Date())).subscribe(timeToday => this.timeToday = timeToday);
   }
 
   getReached() {
     this.reached = this.timeToday.total_grand;
-  }  
+  }
 
-  setNewGoal(goal) {
+  setSettings(goal: number, date: Date) {
     this.goal = goal;
-    console.log(this.goal);
+    this.date = date;
     localStorage.setItem('goal_today', <string>this.goal);
+    if (date) {
+      localStorage.setItem('date', <string>this.date);
+      this.reSubscribe();
+    }
+    this.ngDoCheck();
+    return true;
   }
 
   public getDifference() {
