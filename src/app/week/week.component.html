@@ -17,7 +17,7 @@
               <circle *ngIf="d.time >= goal" cx="50" cy="50" r="40" stroke="#3450c9" stroke-width="15" fill="white">
               </circle>
               <path *ngIf="d.time < goal" fill="none" stroke="#3450c9" stroke-width="15"
-                    [attr.d]="describeArc(50, 50, 40, 0, hoursToAngles(d.time, goal))"></path>
+                    [attr.d]="svg_calc.describeArc(50, 50, 40, 0, svg_calc.hoursToAngles(d.time, goal))"></path>
             </svg>
           </div>
         </div>
