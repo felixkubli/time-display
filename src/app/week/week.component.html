@@ -11,7 +11,7 @@
             <h3 class="panel-title">{{d.day}}</h3>
           </div>
           <div class="panel-body">
-            <p [class]="getDiffClass(d.diff)">{{d.diff}}</p>
+            <p [class]="getDiffClass(d.diff)"><strong>{{d.diff}}</strong></p>
             <p>{{d.time}} / {{goal}} h</p>
             <svg height="100" width="100">
               <circle *ngIf="d.time >= goal" cx="50" cy="50" r="40" stroke="#3450c9" stroke-width="15" fill="white">

@@ -14,13 +14,13 @@ export class WeekService {
   constructor(private http: Http) { }
 
   getEntrys() {
-    this.date = moment(new Date()).format('YYYY-MM-DD');
+    this.date = moment(new Date()).day(1).format('YYYY-MM-DD');
     this.setUrl();
 
-    return this.http.get(this.mock)
-      .map(response => new Week().deserialize(response.json()));
-    // return this.http.get(this.url, { headers: this.getHeaders() })
+    // return this.http.get(this.mock)
     //   .map(response => new Week().deserialize(response.json()));
+    return this.http.get(this.url, { headers: this.getHeaders() })
+      .map(response => new Week().deserialize(response.json()));
   }
 
   private getHeaders(): Headers {

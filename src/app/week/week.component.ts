@@ -10,11 +10,11 @@ import { Week } from './week.model';
 })
 export class WeekComponent implements OnInit {
   days: any[] = [
-    {day: 'Monday', time: 8},
-    {day: 'Tuesday', time: 7},
-    {day: 'Wednesday', time: 8},
-    {day: 'Thursday', time: 9},
-    {day: 'Friday', time: 4},
+    {day: 'Monday', time: 0.1},
+    {day: 'Tuesday', time: null},
+    {day: 'Wednesday', time: null},
+    {day: 'Thursday', time: null},
+    {day: 'Friday', time: null},
     {day: 'Saturday', time: null},
     {day: 'Sunday', time: null}
   ];
@@ -61,7 +61,7 @@ export class WeekComponent implements OnInit {
     }
   }
 
-  calcDifference(value, goalMultiplier? = 1) {
+  calcDifference(value, goalMultiplier = 1) {
     let diff = _.round(value - (this.goal * goalMultiplier), 1);
     if (diff >= 0) {
       diff = '+' + diff;
