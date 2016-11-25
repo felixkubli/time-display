@@ -14,10 +14,13 @@
             <p [class]="getDiffClass(d.diff)"><strong>{{d.diff}}</strong></p>
             <p>{{d.time}} / {{goal}} h</p>
             <svg height="100" width="100">
+              <circle cx="50" cy="50" r="40" stroke="red" stroke-width="15" fill="white"></circle>
               <circle *ngIf="d.time >= goal" cx="50" cy="50" r="40" stroke="#3450c9" stroke-width="15" fill="white">
               </circle>
               <path *ngIf="d.time < goal" fill="none" stroke="#3450c9" stroke-width="15"
                     [attr.d]="svg_calc.describeArc(50, 50, 40, 0, svg_calc.hoursToAngles(d.time, goal))"></path>
+              <path *ngIf="d.time > goal" fill="none" stroke="green" stroke-width="15"
+                    [attr.d]="svg_calc.describeArc(50, 50, 40, 0, svg_calc.hoursToAngles(d.time-goal, goal))"></path>
             </svg>
           </div>
         </div>
