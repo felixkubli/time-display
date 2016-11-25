@@ -36,7 +36,8 @@ export class TimeTodayComponent implements OnInit {
 
   reSubscribe() {
     this.subscription.unsubscribe();
-    this.subscription = this.timeTodayService.getEntries((this.date || new Date())).subscribe(timeToday => this.timeToday = timeToday);
+    this.subscription = this.timeTodayService.getEntries((this.date || new Date()))
+      .subscribe(timeToday => this.timeToday = timeToday);
   }
 
   getReached() {

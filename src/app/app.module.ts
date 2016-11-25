@@ -16,6 +16,8 @@ import { TimeTodayService } from './time_today/time_today.service';
 import { DetailsComponent } from './details/details.component';
 import { WorkspaceService } from './details/workspace.service';
 import { DateTodayPipe } from './utils/date_today.pipe';
+import { WeekComponent } from './week/week.component';
+import { WeekService } from './week/week.service';
 
 @NgModule({
   imports: [
@@ -31,12 +33,14 @@ import { DateTodayPipe } from './utils/date_today.pipe';
     AboutComponent,
     TimeTodayComponent,
     DetailsComponent,
+    WeekComponent,
     DateTodayPipe
   ],
   providers: [
     ApiService,
     TimeTodayService,
-    WorkspaceService
+    WorkspaceService,
+    WeekService
   ],
   bootstrap: [AppComponent]
 })

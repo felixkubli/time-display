@@ -1,0 +1,18 @@
+* {
+
+}
+
+.difference {
+
+  &.positive {
+    color: green;
+  }
+
+  &.negative {
+    color: rgba(215, 0, 0, 0.76);
+  }
+
+}
+span[class*=difference] {
+  padding-left: 30px;
+}

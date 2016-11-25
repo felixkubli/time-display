@@ -1,0 +1,16 @@
+{
+  "total_grand": 144977000,
+  "total_billable": null,
+  "total_currencies": [{"currency": null, "amount": null}],
+  "data": [{
+    "title": {"client": null, "project": null, "color": "0", "hex_color": null},
+    "pid": null,
+    "totals": [29876000, 24468000, 35564000, 29606000, 25463000, null, null, 144977000],
+    "details": [{
+      "uid": 2383490,
+      "title": {"user": "Felix Kubli"},
+      "totals": [29876000, 24468000, 35564000, 29606000, 25463000, null, null, 144977000]
+    }]
+  }],
+  "week_totals": [29876000, 24468000, 35564000, 29606000, 25463000, null, null, 144977000]
+}
