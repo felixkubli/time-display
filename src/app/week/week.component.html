@@ -15,14 +15,15 @@
             <p>{{d.time}} / {{goal}} h</p>
             <svg height="100" width="100">
               <!-- red -->
-              <circle *ngIf="d.time <= goal" cx="50" cy="50" r="40" stroke="rgba(215, 0, 0, 0.76)" stroke-width="15" fill="white"></circle>
+              <circle *ngIf="d.time <= goal" cx="50" cy="50" r="40" stroke="#d9534f" stroke-width="15"
+                      fill="white"></circle>
               <!-- blue -->
-              <circle *ngIf="d.time >= goal" cx="50" cy="50" r="40" stroke="#3654D1" stroke-width="15" fill="white">
+              <circle *ngIf="d.time >= goal" cx="50" cy="50" r="40" stroke="#337ab7" stroke-width="15" fill="white">
               </circle>
-              <path *ngIf="d.time < goal" fill="none" stroke="#3654D1" stroke-width="15"
+              <path *ngIf="d.time < goal" fill="none" stroke="#337ab7" stroke-width="15"
                     [attr.d]="svg_calc.describeArc(50, 50, 40, 0, svg_calc.hoursToAngles(d.time, goal))"></path>
               <!-- green -->
-              <path *ngIf="d.time > goal" fill="none" stroke="#3FBF23" stroke-width="15"
+              <path *ngIf="d.time > goal" fill="none" stroke="#5cb85c" stroke-width="15"
                     [attr.d]="svg_calc.describeArc(50, 50, 40, 0, svg_calc.hoursToAngles(d.time-goal, goal))"></path>
             </svg>
           </div>
@@ -30,11 +31,19 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col-sm-10">
-      <progressbar [value]="week.total_grand" [max]="this.goal * 5" min="0" [type]="progress_type">
-        {{week.total_grand}} / {{goal * 5}}
-      </progressbar>
+      <div class="progress">
+        <bs-progress [max]="progress.max">
+          <bar [value]="progress.progress" type="primary">
+            {{week.total_grand}} / {{progress.goal}}
+          </bar>
+          <bar [value]="progress.total_diff" [type]="progress.type">
+            {{total_diff}}
+          </bar>
+        </bs-progress>
+      </div>
     </div>
   </div>
 </div>

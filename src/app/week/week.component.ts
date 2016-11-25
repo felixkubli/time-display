@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 import { WeekService } from './week.service';
 import { Week } from './week.model';
-import { SvgCalculator } from '../utils/svg_calculator'
+import { SvgCalculator } from '../utils/svg_calculator';
+import { Progress } from '../utils/progress';
 
 @Component({
   selector: 'my-week',
@@ -19,16 +20,16 @@ export class WeekComponent implements OnInit {
     {day: 'Saturday', time: null},
     {day: 'Sunday', time: null}
   ];
+  progress: Progress = new Progress();
   goal: number;
   total_diff: number;
   subscription;
   week: Week = new Week();
   svg_calc: SvgCalculator;
 
-  progress_type: string = 'primary';
-
   constructor(private weekService: WeekService) {
     this.goal = localStorage.getItem('goal_today');
+    this.progress.goal = this.goal * 5;
     this.svg_calc = new SvgCalculator();
   }
 
@@ -45,22 +46,14 @@ export class WeekComponent implements OnInit {
         day.diff = this.calcDifference(day.time);
       });
 
-      this.getProgress();
       this.total_diff = this.calcDifference(this.week.total_grand, 5);
+      this.progress.getProgress(this.week.total_grand, this.total_diff);
     }
   }
 
   mergeWeek(time: any[]) {
     for (let i = 0; i < this.days.length; i++) {
       this.days[i].time = time[i];
-    }
-  }
-
-  getProgress() {
-    if (this.goal * 5 <= this.week.total_grand) {
-      this.progress_type = 'success';
-    } else {
-      this.progress_type = 'primary';
     }
   }
 
