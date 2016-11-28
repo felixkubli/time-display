@@ -15,11 +15,11 @@ Clone the repository
 ```
 git clone git@github.com:felixkubli/time-display.git
 ```
-Install all Dependencies, run 
+Install all Dependencies
 ```
 npm install
 ```
-Start the local Server run 
+Run the local Server
 ```
 npm start 
 ```
