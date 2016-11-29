@@ -29,7 +29,6 @@ export class WeekComponent implements OnInit {
 
   constructor(private weekService: WeekService) {
     this.goal = localStorage.getItem('goal_today');
-    this.progress.goal = this.goal * 5;
     this.svg_calc = new SvgCalculator();
   }
 
@@ -47,7 +46,7 @@ export class WeekComponent implements OnInit {
       });
 
       this.total_diff = this.calcDifference(this.week.total_grand, 5);
-      this.progress.getProgress(this.week.total_grand, this.total_diff);
+      this.progress.getProgress(this.week.total_grand, this.goal * 5, this.total_diff);
     }
   }
 

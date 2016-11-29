@@ -7,8 +7,9 @@ export class Progress {
   goal: number;
   total_grand: number;
 
-  getProgress(total_grand: number, total_diff: any) {
-    if (this.goal * 5 <= total_grand) {
+  getProgress(total_grand: number, goal: number, total_diff: any) {
+    this.goal = goal;
+    if (this.goal <= total_grand) {
       this.type = 'success';
       this.max = total_grand;
       this.progress = this.goal;
