@@ -59,8 +59,13 @@ export class TimeTodayComponent implements OnInit {
   public getDifference() {
     this.difference = _.round((this.reached - this.goal), 1);
 
-    this.difference_class = 'difference negative';
-    this.progress_type = 'primary';
+    if (this.difference < 0) {
+      this.difference_class = 'difference negative';
+      this.progress_type = 'primary';
+    } else if (this.difference >= 0) {
+      this.difference_class = 'difference positive';
+      this.progress_type = 'success';
+    }
     return this.difference;
   }
 }
