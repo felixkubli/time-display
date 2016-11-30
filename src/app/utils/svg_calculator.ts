@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 
 export class SvgCalculator {
   hoursToAngles(value: number, max: number) {

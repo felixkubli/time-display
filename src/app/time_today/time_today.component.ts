@@ -47,9 +47,9 @@ export class TimeTodayComponent implements OnInit {
   setSettings(goal: number, date: Date) {
     this.goal = goal;
     this.date = date;
-    localStorage.setItem('goal_today', <string>this.goal);
+    localStorage.setItem('goal_today', this.goal + '');
     if (date) {
-      localStorage.setItem('date', <string>this.date);
+      localStorage.setItem('date', this.date + '');
       this.reSubscribe();
     }
     this.ngDoCheck();
@@ -59,14 +59,8 @@ export class TimeTodayComponent implements OnInit {
   public getDifference() {
     this.difference = _.round((this.reached - this.goal), 1);
 
-    if (this.difference >= 0) {
-      this.difference_class = 'difference positive';
-      this.progress_type = 'success';
-      return '+' + this.difference;
-    } else {
-      this.difference_class = 'difference negative';
-      this.progress_type = 'primary';
-      return this.difference;
-    }
+    this.difference_class = 'difference negative';
+    this.progress_type = 'primary';
+    return this.difference;
   }
 }

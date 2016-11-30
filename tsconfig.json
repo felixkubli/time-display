@@ -7,9 +7,16 @@
     "sourceMap": true,
     "noEmitHelpers": true,
     "types": [
-      "lodash"
+      "lodash",
+      "node"
     ]
   },
+  "exclude": [
+    "node_modules",
+    "typings",
+    "typings/index.d.ts",
+    "typings/globals/**.*"
+  ],
   "compileOnSave": false,
   "buildOnSave": false,
   "awesomeTypescriptLoaderOptions": {

@@ -9,7 +9,7 @@ import '@angular/router';
 import 'rxjs';
 import '@angularclass/hmr';
 
-import 'ng2-bootstrap';
+import 'ng2-bootstrap/ng2-bootstrap';
 import 'lodash';
 
 // Other vendors for example jQuery, Lodash or Bootstrap

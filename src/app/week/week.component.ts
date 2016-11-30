@@ -28,7 +28,7 @@ export class WeekComponent implements OnInit {
   svg_calc: SvgCalculator;
 
   constructor(private weekService: WeekService) {
-    this.goal = localStorage.getItem('goal_today');
+    this.goal = +localStorage.getItem('goal_today');
     this.svg_calc = new SvgCalculator();
   }
 
@@ -58,9 +58,6 @@ export class WeekComponent implements OnInit {
 
   calcDifference(value, goalMultiplier = 1) {
     let diff = _.round(value - (this.goal * goalMultiplier), 1);
-    if (diff >= 0) {
-      diff = '+' + diff;
-    }
     return diff;
   }
 
