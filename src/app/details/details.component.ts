@@ -34,7 +34,7 @@ export class DetailsComponent implements OnInit {
   }
 
   onSubmitID() {
-    localStorage.setItem('workspace_id', <string>this.workspace_id);
+    localStorage.setItem('workspace_id', this.workspace_id + '');
     this.updated = true;
   }
 

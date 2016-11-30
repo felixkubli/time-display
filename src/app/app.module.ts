@@ -10,12 +10,13 @@ import { ApiService } from './shared';
 import { routing } from './app.routing';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
-import { Ng2BootstrapModule } from 'ng2-bootstrap';
+import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { TimeTodayComponent } from './time_today/time_today.component';
 import { TimeTodayService } from './time_today/time_today.service';
 import { DetailsComponent } from './details/details.component';
 import { WorkspaceService } from './details/workspace.service';
 import { DateTodayPipe } from './utils/date_today.pipe';
+import { NumberDiffPipe } from './utils/number_diff.pipe';
 import { WeekComponent } from './week/week.component';
 import { WeekService } from './week/week.service';
 
@@ -34,7 +35,8 @@ import { WeekService } from './week/week.service';
     TimeTodayComponent,
     DetailsComponent,
     WeekComponent,
-    DateTodayPipe
+    DateTodayPipe,
+    NumberDiffPipe
   ],
   providers: [
     ApiService,

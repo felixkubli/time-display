@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Your Time this Week <span [class]="getDiffClass(total_diff)">{{total_diff}}</span></h1>
+  <h1>Your Time this Week <span [class]="getDiffClass(total_diff)">{{total_diff | numberDiff}}</span></h1>
 </div>
 
 <div class="container">
@@ -11,7 +11,7 @@
             <h3 class="panel-title">{{d.day}}</h3>
           </div>
           <div class="panel-body">
-            <p [class]="getDiffClass(d.diff)"><strong>{{d.diff}}</strong></p>
+            <p [class]="getDiffClass(d.diff)"><strong>{{d.diff | numberDiff}}</strong></p>
             <p>{{d.time}} / {{goal}} h</p>
             <svg height="100" width="100">
               <!-- red -->
@@ -40,7 +40,7 @@
             {{week.total_grand}} / {{progress.goal}}
           </bar>
           <bar [value]="progress.total_diff" [type]="progress.type">
-            {{total_diff}}
+            {{total_diff | numberDiff}}
           </bar>
         </bs-progress>
       </div>
