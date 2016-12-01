@@ -34,20 +34,19 @@ export class WeekComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.weekService.getEntrys()
-      .subscribe(response => this.week = response);
+      .subscribe(response => {
+        this.week = response;
+        this.updateValues();
+      });
   }
 
-  ngDoCheck() {
-    if (!_.isEmpty(this.week)) {
-      this.mergeWeek(this.week.week_totals);
-
-      _.each(this.days, (day) => {
-        day.diff = this.calcDifference(day.time);
-      });
-
-      this.total_diff = this.calcDifference(this.week.total_grand, 5);
-      this.progress.getProgress(this.week.total_grand, this.goal * 5, this.total_diff);
-    }
+  updateValues() {
+    this.mergeWeek(this.week.week_totals);
+    _.each(this.days, (day) => {
+      day.diff = this.calcDifference(day.time);
+    });
+    this.total_diff = this.calcDifference(this.week.total_grand, 5);
+    this.progress.getProgress(this.week.total_grand, this.goal * 5, this.total_diff);
   }
 
   mergeWeek(time: any[]) {
