@@ -25,35 +25,24 @@ export class TimeTodayComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subscription = this.timeTodayService.getEntries(new Date()).subscribe(timeToday => {
-      this.timeToday = timeToday;
-    });
-  }
-  ngDoCheck() {
-    this.getReached();
-    this.difference = this.getDifference();
+    this.subscription = this.subscribeToService();
   }
 
-  reSubscribe() {
+  subscribeToService() {
+    return this.timeTodayService.getEntries((this.date || new Date())).subscribe(timeToday => {
+      this.timeToday = timeToday;
+      this.getReached();
+      this.difference = this.getDifference();
+    });
+  }
+
+  reSubscribeService() {
     this.subscription.unsubscribe();
-    this.subscription = this.timeTodayService.getEntries((this.date || new Date()))
-      .subscribe(timeToday => this.timeToday = timeToday);
+    this.subscription = this.subscribeToService();
   }
 
   getReached() {
     this.reached = this.timeToday.total_grand;
-  }
-
-  setSettings(goal: number, date: Date) {
-    this.goal = goal;
-    this.date = date;
-    localStorage.setItem('goal_today', this.goal + '');
-    if (date) {
-      localStorage.setItem('date', this.date + '');
-      this.reSubscribe();
-    }
-    this.ngDoCheck();
-    return true;
   }
 
   public getDifference() {
@@ -67,5 +56,16 @@ export class TimeTodayComponent implements OnInit {
       this.progress_type = 'success';
     }
     return this.difference;
+  }
+
+  setSettings(goal: number, date: Date) {
+    this.goal = goal;
+    this.date = date;
+    localStorage.setItem('goal_today', this.goal + '');
+    if (date) {
+      localStorage.setItem('date', this.date + '');
+      this.reSubscribeService();
+    }
+    return true;
   }
 }
