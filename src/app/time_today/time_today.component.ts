@@ -29,7 +29,7 @@ export class TimeTodayComponent implements OnInit {
   }
 
   subscribeToService() {
-    return this.timeTodayService.getEntries((this.date || new Date())).subscribe(timeToday => {
+    return this.timeTodayService.getEntries((this.date)).subscribe(timeToday => {
       this.timeToday = timeToday;
       this.getReached();
       this.difference = this.getDifference();
