@@ -1,4 +1,4 @@
-# READ ME, Time Display
+# Time Display
 
 ## General Information
 This project is based off the [angular2-webpack](https://github.com/preboot/angular2-webpack).
