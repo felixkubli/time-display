@@ -23,7 +23,9 @@ export class WeekComponent implements OnInit {
   ];
   progress: Progress = new Progress();
   goal: number;
-  input_goal: number;
+  input_goal_day: number;
+  week_goal: number;
+  input_goal_week: number;
   total_diff: number;
   subscription;
   week: Week = new Week();
@@ -34,7 +36,9 @@ export class WeekComponent implements OnInit {
 
   constructor(private weekService: WeekService) {
     this.goal = +localStorage.getItem('goal_today');
-    this.input_goal = this.goal;
+    this.input_goal_day = this.goal;
+    this.week_goal = this.goal * 5;
+    this.input_goal_week = this.week_goal;
     this.svg_calc = new SvgCalculator();
     this.input_date = moment().format('YYYY-[W]W');
   }
@@ -55,7 +59,7 @@ export class WeekComponent implements OnInit {
     _.each(this.days, (day) => {
       day.diff = this.calcDifference(day.time);
     });
-    this.total_diff = this.calcDifference(this.week.total_grand, 5);
+    this.total_diff = this.calcDifference(this.week.total_grand);
     this.progress.getProgress(this.week.total_grand, this.goal * 5, this.total_diff);
   }
 
@@ -70,8 +74,8 @@ export class WeekComponent implements OnInit {
     }
   }
 
-  calcDifference(value, goalMultiplier = 1) {
-    return _.round(value - (this.goal * goalMultiplier), 1);
+  calcDifference(value) {
+    return _.round(value - (this.week_goal), 1);
   }
 
   getDiffClass(diff) {
@@ -92,5 +96,13 @@ export class WeekComponent implements OnInit {
       console.log(this.date);
     }
     return true;
+  }
+
+  setWeekGoal() {
+    this.input_goal_week = this.input_goal_day * 5;
+  }
+
+  setDayGoal() {
+    this.input_goal_day = _.round(this.input_goal_week / 5);
   }
 }
