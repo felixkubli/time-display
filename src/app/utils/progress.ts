@@ -9,15 +9,18 @@ export class Progress {
 
   getProgress(total_grand: number, goal: number, total_diff: any) {
     this.goal = goal;
-    if (this.goal <= total_grand) {
+    this.total_grand = total_grand;
+    this.total_diff = total_diff;
+
+    if (this.goal <= this.total_grand) {
       this.type = 'success';
-      this.max = total_grand;
+      this.max = this.total_grand;
       this.progress = this.goal;
-    } else {
+    } else if (this.goal > this.total_grand) {
       this.type = 'danger';
       this.max = this.goal;
-      this.progress = total_grand;
+      this.progress = this.total_grand;
     }
-    this.total_diff = Math.abs(total_diff);
+    this.total_diff = Math.abs(this.total_diff);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 import { WeekService } from './week.service';
 import { Week } from './week.model';
 import { SvgCalculator } from '../utils/svg_calculator';
@@ -27,7 +28,7 @@ export class WeekComponent implements OnInit {
   subscription;
   week: Week = new Week();
   date: Date;
-  input_date: Date;
+  input_date: string;
   svg_calc: SvgCalculator;
 
 
@@ -35,6 +36,7 @@ export class WeekComponent implements OnInit {
     this.goal = +localStorage.getItem('goal_today');
     this.input_goal = this.goal;
     this.svg_calc = new SvgCalculator();
+    this.input_date = moment().format('YYYY-[W]W');
   }
 
   ngOnInit() {
