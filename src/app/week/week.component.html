@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Your Time this Week <span [class]="getDiffClass(total_diff)">{{total_diff | numberDiff}}</span>
+  <h1>Your Time this Week <span [class]="getDiffClass(total_diff, false)">{{total_diff | numberDiff}}</span>
     <button (click)="reSubscribeService()" class="refresh btn btn-primary">
       <span class="glyphicon glyphicon-refresh"></span>
     </button>
@@ -65,9 +65,11 @@
       <div class="modal-body">
         <div class="form-inline goal-form">
           <label for="input-goal-day">Daily Goal</label>
-          <input type="text" class="form-control" id="input-goal-day" [(ngModel)]="input_goal_day">
+          <input type="text" class="form-control" id="input-goal-day" 
+            (keyup)="setWeekGoal()" [(ngModel)]="input_goal_day">
           <label for="input-goal-week">Weekly Goal</label>
-          <input type="text" class="form-control" id="input-goal-week" [(ngModel)]="input_goal_week">
+          <input type="text" class="form-control" id="input-goal-week"
+            (keyup)="setDayGoal()" [(ngModel)]="input_goal_week">
           <label for="input-date">Select a date</label>
           <input type="week" class="form-control" id="input-date" [(ngModel)]="input_date">
           <button (click)="updated = setSettings(input_goal_day, input_date)" class="btn btn-default">Update</button>
