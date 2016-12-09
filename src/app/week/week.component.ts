@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { WeekService } from './week.service';
 import { Week } from './week.model';
+import { WeeklySettings } from './weekly_settings.interface';
 import { SvgCalculator } from '../utils/svg_calculator';
 import { Progress } from '../utils/progress';
 
@@ -23,24 +24,25 @@ export class WeekComponent implements OnInit {
   ];
   progress: Progress = new Progress();
   goal: number;
-  input_goal_day: number;
   week_goal: number;
-  input_goal_week: number;
   total_diff: number;
   subscription;
   week: Week = new Week();
+  settings: WeeklySettings;
   date: Date;
-  input_date: string;
   svg_calc: SvgCalculator;
-
 
   constructor(private weekService: WeekService) {
     this.goal = +localStorage.getItem('goal_today');
-    this.input_goal_day = this.goal;
     this.week_goal = this.goal * 5;
-    this.input_goal_week = this.week_goal;
     this.svg_calc = new SvgCalculator();
-    this.input_date = moment().format('YYYY-[W]W');
+    this.settings = {
+      goal: {
+        day: this.goal,
+        week: this.week_goal
+      },
+      date: moment().format('YYYY-[W]W')
+    };
   }
 
   ngOnInit() {
@@ -54,6 +56,7 @@ export class WeekComponent implements OnInit {
         this.updateValues();
       });
   }
+
   updateValues() {
     this.mergeWeek(this.week.week_totals);
     _.each(this.days, (day) => {
@@ -90,10 +93,9 @@ export class WeekComponent implements OnInit {
     }
   }
 
-  setSettings(goal: number, date: Date) {
-    this.goal = goal;
+  setSettings(settings: WeeklySettings, date: Date) {
+    this.goal = settings.goal.day;
     this.date = date;
-    console.log(this.goal);
     localStorage.setItem('goal_today', this.goal + '');
     if (date) {
       localStorage.setItem('week', this.date + '');
@@ -103,10 +105,10 @@ export class WeekComponent implements OnInit {
   }
 
   setWeekGoal() {
-    this.input_goal_week = this.input_goal_day * 5;
+    this.settings.goal.week = this.settings.goal.day * 5;
   }
 
   setDayGoal() {
-    this.input_goal_day = _.round((this.input_goal_week / 5), 1);
+    this.settings.goal.day = _.round((this.settings.goal.week / 5), 1);
   }
 }

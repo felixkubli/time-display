@@ -64,15 +64,15 @@
       </div>
       <div class="modal-body">
         <div class="form-inline goal-form">
-          <label for="input-goal-day">Daily Goal</label>
-          <input type="text" class="form-control" id="input-goal-day" 
-            (keyup)="setWeekGoal()" [(ngModel)]="input_goal_day">
-          <label for="input-goal-week">Weekly Goal</label>
-          <input type="text" class="form-control" id="input-goal-week"
-            (keyup)="setDayGoal()" [(ngModel)]="input_goal_week">
-          <label for="input-date">Select a date</label>
-          <input type="week" class="form-control" id="input-date" [(ngModel)]="input_date">
-          <button (click)="updated = setSettings(input_goal_day, input_date)" class="btn btn-default">Update</button>
+          <label>Daily Goal</label>
+          <input type="number" class="form-control"
+            (keyup)="setWeekGoal()" [(ngModel)]="settings.goal.day" name="day">
+          <label>Weekly Goal</label>
+          <input type="number" class="form-control"
+            (keyup)="setDayGoal()" [(ngModel)]="settings.goal.week" name="week">
+          <label>Select a date</label>
+          <input type="week" class="form-control" [(ngModel)]="settings.date" name="date">
+          <button (click)="updated = setSettings(settings, settings.date)" class="btn btn-default">Update</button>
         </div>
         <div class="alert alert-success success" [hidden]="!updated">Your settings have been updated</div>
       </div>

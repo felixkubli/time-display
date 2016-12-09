@@ -4,19 +4,13 @@ import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
+import { TimeTodayComponent } from '../time_today/time_today.component';
 
 describe('Home Component', () => {
   const html = '<my-home></my-home>';
 
   beforeEach(() => {
-    TestBed.configureTestingModule({declarations: [HomeComponent, TestComponent]});
-    TestBed.overrideComponent(TestComponent, { set: { template: html }});
-  });
-
-  it('should ...', () => {
-    const fixture = TestBed.createComponent(TestComponent);
-    fixture.detectChanges();
-    expect(fixture.nativeElement.children[0].textContent).toContain('Home Works!');
+    TestBed.configureTestingModule({declarations: [HomeComponent, TimeTodayComponent]});
   });
 
 });
