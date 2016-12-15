@@ -6,6 +6,7 @@ import { DateTodayPipe } from '../utils/date_today.pipe';
 import { NumberDiffPipe } from '../utils/number_diff.pipe';
 import { TimeTodayService } from '../time_today/time_today.service';
 import { HttpModule } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 
 describe('TimeTodayComponent', () => {
 
@@ -27,6 +28,7 @@ describe('TimeTodayComponent', () => {
   });
 
   let component: any;
+  let service: TimeTodayService;
 
   // beforeEach(async(inject([TimeTodayComponent], (_component: TimeTodayComponent) => {
   //   component = _component;
@@ -34,10 +36,18 @@ describe('TimeTodayComponent', () => {
 
   beforeEach(() => {
     component = TestBed.createComponent(TimeTodayComponent);
+    service = TestBed.get(TimeTodayService);
   });
 
   it('can create component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('can call the service', () => {
+    let data = {};
+    spyOn(service, 'getEntries').and.returnValue(Observable.of(data));
+    component.subscribeToService();
+    expect(component.timeToday).toEqual(data);
   });
 
 });
