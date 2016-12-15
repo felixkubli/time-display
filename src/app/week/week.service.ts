@@ -13,8 +13,12 @@ export class WeekService {
 
   constructor(private http: Http) { }
 
-  getEntrys() {
-    this.date = moment(new Date()).day(1).format('YYYY-MM-DD');
+  getEntrys(date?: Date) {
+    if (date) {
+      this.date = moment(date).days(1).format('YYYY-MM-DD');
+    } else {
+      this.date = moment(new Date()).day(1).format('YYYY-MM-DD');
+    }
     this.setUrl();
 
     // return this.http.get(this.mock)

@@ -9,13 +9,13 @@ import * as moment from 'moment';
 
 export class HomeComponent {
   input_goal: number;
-  input_date: Date;
-  date_string: string;
+  date: Date;
+  input_date: string;
 
   constructor() {
     this.input_goal = parseFloat(localStorage.getItem('goal_today')) || 0;
-    this.input_date = new Date();
-    this.date_string = moment(this.input_date).format('YYYY-MM-DD');
+    this.date = new Date();
+    this.input_date = moment(this.date).format('YYYY-MM-DD');
   }
 
 }
