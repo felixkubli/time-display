@@ -1,4 +1,5 @@
 import { TimeToday } from './time_today.model';
+import {TimeTodayMock} from '../mock/time_today.mock';
 
 describe('TimeToday', () => {
   let model: TimeToday;
@@ -22,27 +23,9 @@ describe('TimeToday', () => {
   });
 
   describe('deserialize', () => {
-    let validParameters
+    let validParameters: any;
     beforeEach(() => {
-      validParameters = {
-        total_grand: 23040000,
-        data: [
-          {
-            id: 1,
-            time: 23040000,
-            items: [
-              {
-                title: {time_entry: '6124 Investment Time'},
-                time: 8640000
-              },
-              {
-                title: {time_entry: '7000 Test Entry'},
-                time: 14400000
-              }
-            ]
-          }
-        ]
-      };
+      validParameters = new TimeTodayMock().data;
     });
 
     it('returns instance of an object', () => {
