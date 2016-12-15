@@ -9,6 +9,7 @@ import '../style/app.scss';
 })
 export class AppComponent {
   url = 'https://github.com/preboot/angular2-webpack';
+  isCollapsed: boolean = true;
 
   constructor(private viewContainerRef: ViewContainerRef) {
     // Do something with api
