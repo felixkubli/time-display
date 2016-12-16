@@ -1,5 +1,3 @@
-
-
 import { TestBed, inject } from '@angular/core/testing';
 import { TimeTodayService } from './time_today.service';
 import {MockBackend, MockConnection} from '@angular/http/testing';
