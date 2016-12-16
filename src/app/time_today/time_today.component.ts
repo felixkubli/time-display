@@ -29,11 +29,15 @@ export class TimeTodayComponent implements OnInit {
   }
 
   subscribeToService() {
-    return this.timeTodayService.getEntries((this.date)).subscribe(timeToday => {
-      this.timeToday = timeToday;
-      this.getReached();
-      this.difference = this.getDifference();
+    return this.timeTodayService.getEntries(this.date).subscribe(timeToday => {
+      this.updateValues(timeToday);
     });
+  }
+
+  updateValues(timeToday) {
+    this.timeToday = timeToday;
+    this.getReached();
+    this.difference = this.getDifference();
   }
 
   reSubscribeService() {
