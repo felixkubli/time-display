@@ -63,13 +63,15 @@ export class TimeTodayComponent implements OnInit {
   }
 
   setSettings(goal: number, date: Date) {
-    this.goal = goal;
-    this.date = date;
-    localStorage.setItem('goal_today', this.goal + '');
-    if (date) {
+    if (date && goal) {
+      this.goal = goal;
+      this.date = date;
+      localStorage.setItem('goal_today', this.goal + '');
       localStorage.setItem('date', this.date + '');
       this.reSubscribeService();
+      return true;
+    } else {
+      return false;
     }
-    return true;
   }
 }

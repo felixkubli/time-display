@@ -101,6 +101,12 @@ describe('TimeTodayComponent', () => {
         component.goal = 8;
         expect(component.getDifference()).toEqual(0);
       });
+
+      it('undefined', () => {
+        component.goal = undefined;
+        component.date = undefined;
+        expect(component.getDifference()).toBeFalsy();
+      });
     });
 
     describe('negative difference', () => {
@@ -140,6 +146,10 @@ describe('TimeTodayComponent', () => {
       let newDate = new Date(2016, 3, 10);
       component.setSettings(8, newDate);
       expect(component.date).toEqual(newDate);
+    });
+
+    it('undefined', () => {
+      expect(component.setSettings(undefined, undefined)).toBeFalsy();
     });
   });
 });
