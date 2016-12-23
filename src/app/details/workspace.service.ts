@@ -13,7 +13,6 @@ export class WorkspaceService {
 
   setToken(token) {
     this.token = token;
-    localStorage.setItem('token', this.token);
   }
 
   getWorkspace() {

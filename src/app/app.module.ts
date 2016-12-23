@@ -19,6 +19,7 @@ import { DateTodayPipe } from './utils/date_today.pipe';
 import { NumberDiffPipe } from './utils/number_diff.pipe';
 import { WeekComponent } from './week/week.component';
 import { WeekService } from './week/week.service';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { WeekService } from './week/week.service';
     ApiService,
     TimeTodayService,
     WorkspaceService,
-    WeekService
+    WeekService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
