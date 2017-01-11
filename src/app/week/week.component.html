@@ -63,7 +63,7 @@
           <label>Weekly Goal</label>
           <input type="number" class="form-control"
             (keyup)="setDayGoal()" [(ngModel)]="settings.goal.week" name="week">
-          <label>Select a date</label>
+          <label>Select a Week</label>
           <input type="week" class="form-control" [(ngModel)]="settings.date" name="date">
           <button (click)="updated = setSettings(settings, settings.date)" class="btn btn-default">Update</button>
         </div>

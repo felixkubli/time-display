@@ -13,6 +13,7 @@ export class DetailsComponent implements OnInit {
   workspace_id: number;
   subscription = null;
   updated = false;
+  tokenValid: boolean;
 
   constructor(private workspaceService: WorkspaceService) {
 
@@ -24,13 +25,18 @@ export class DetailsComponent implements OnInit {
   }
 
   onSubmitToken() {
-    localStorage.setItem('token', this.token);
     this.workspaceService.setToken(this.token);
-    this.subscription = this.workspaceService.getWorkspace().subscribe(workspaces => this.workspaces = workspaces);
-  }
-
-  tokenValid() {
-    return this.subscription != null;
+    this.subscription = this.workspaceService.getWorkspace().subscribe(workspaces => {
+        this.workspaces = workspaces;
+        localStorage.setItem('token', this.token);
+        this.tokenValid = true;
+      },
+      error => {
+        this.tokenValid = false;
+        this.updated = false;
+        console.error('could not load resource');
+      }
+    );
   }
 
   onSubmitID() {

@@ -10,7 +10,7 @@
       <input type="submit" class="btn btn-default">
     </form>
 
-    <div [hidden]="!tokenValid()">
+    <div [hidden]="!tokenValid">
       <form (ngSubmit)="onSubmitID()" #workspaceForm="ngForm">
         <div class="form-group">
           <label for="workspace_id">Workspace</label>
