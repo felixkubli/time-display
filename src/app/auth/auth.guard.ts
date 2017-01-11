@@ -7,7 +7,6 @@ export class AuthGuard implements CanActivate {
 
     canActivate() {
         let token = localStorage.getItem('token');
-        console.log(token);
         if (token !== null && token.length > 7) {
             return true;
         }
