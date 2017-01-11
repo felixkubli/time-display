@@ -41,7 +41,7 @@ export class WeekComponent implements OnInit {
         day: this.goal,
         week: this.week_goal
       },
-      date: moment().format('YYYY-[W]W')
+      date: moment().format('YYYY-[W]WW')
     };
   }
 

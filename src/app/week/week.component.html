@@ -39,16 +39,9 @@
 
   <div class="row">
     <div class="col-sm-10">
-      <div class="progress">
-        <bs-progress [max]="progress.max">
-          <bar [value]="progress.progress" type="primary">
-            {{week.total_grand}} / {{progress.goal}}
-          </bar>
-          <bar [value]="progress.total_diff" [type]="progress.type">
-            {{total_diff | numberDiff}}
-          </bar>
-        </bs-progress>
-      </div>
+      <progressbar [max]="progress.goal" [value]="progress.total_grand" [type]="progress.type">
+        {{week.total_grand}} / {{progress.goal}}
+      </progressbar>
     </div>
   </div>
 </div>
