@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {WorkspaceService} from './workspace.service';
-import {Workspace} from './workspace.model';
+import { Component, OnInit } from '@angular/core';
+import { WorkspaceService } from './workspace.service';
+import { Workspace } from './workspace.model';
 
 @Component({
   selector: 'my-details',
