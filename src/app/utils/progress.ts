@@ -14,12 +14,8 @@ export class Progress {
 
     if (this.goal <= this.total_grand) {
       this.type = 'success';
-      this.max = this.total_grand;
-      this.progress = this.goal;
     } else if (this.goal > this.total_grand) {
-      this.type = 'danger';
-      this.max = this.goal;
-      this.progress = this.total_grand;
+      this.type = 'primary';
     }
     this.total_diff = Math.abs(this.total_diff);
   }
