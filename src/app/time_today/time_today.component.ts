@@ -50,7 +50,7 @@ export class TimeTodayComponent implements OnInit {
   }
 
   public getDifference() {
-    this.difference = _.round((this.reached - this.goal), 1);
+    this.difference = _.round((this.reached - this.goal), 2);
 
     if (this.difference < 0) {
       this.difference_class = 'difference negative';

@@ -13,18 +13,20 @@ import { Progress } from '../utils/progress';
   styleUrls: ['./week.component.scss']
 })
 export class WeekComponent implements OnInit {
-  days: any[] = [
-    {day: 'Monday', time: 0.1},
-    {day: 'Tuesday', time: null},
-    {day: 'Wednesday', time: null},
-    {day: 'Thursday', time: null},
-    {day: 'Friday', time: null},
-    {day: 'Saturday', time: null},
-    {day: 'Sunday', time: null}
-  ];
+  days: any = {
+    withValue: 1,
+    all: [
+      { day: 'Monday', time: 0.1 },
+      { day: 'Tuesday', time: null },
+      { day: 'Wednesday', time: null },
+      { day: 'Thursday', time: null },
+      { day: 'Friday', time: null },
+      { day: 'Saturday', time: null },
+      { day: 'Sunday', time: null }
+    ]
+  };
   progress: Progress = new Progress();
   goal: number;
-  week_goal: number;
   total_diff: number;
   subscription;
   week: Week = new Week();
@@ -34,12 +36,10 @@ export class WeekComponent implements OnInit {
 
   constructor(private weekService: WeekService) {
     this.goal = +localStorage.getItem('goal_today');
-    this.week_goal = this.goal * 5;
     this.svg_calc = new SvgCalculator();
     this.settings = {
       goal: {
         day: this.goal,
-        week: this.week_goal
       },
       date: moment().format('YYYY-[W]WW')
     };
@@ -59,11 +59,11 @@ export class WeekComponent implements OnInit {
 
   updateValues() {
     this.mergeWeek(this.week.week_totals);
-    _.each(this.days, (day) => {
+    _.each(this.days.all, (day) => {
       day.diff = this.calcDifference(day.time);
     });
-    this.total_diff = this.calcDifference(this.week.total_grand, false);
-    this.progress.getProgress(this.week.total_grand, this.goal * 5, this.total_diff);
+    this.total_diff = this.calcDifference(this.week.total_grand, this.days.withValue);
+    this.progress.getProgress(this.week.total_grand, this.goal * this.days.withValue, this.total_diff);
   }
 
   reSubscribeService() {
@@ -72,17 +72,17 @@ export class WeekComponent implements OnInit {
   }
 
   mergeWeek(time: any[]) {
-    for (let i = 0; i < this.days.length; i++) {
-      this.days[i].time = time[i];
+    this.days.withValue = 0;
+    for (let i = 0; i < this.days.all.length; i++) {
+      this.days.all[i].time = time[i];
+      if (time[i] != null) {
+        this.days.withValue += 1;
+      }
     }
   }
 
-  calcDifference(value, day = true) {
-    if (day === true) {
-      return _.round(value - this.goal, 1);
-    } else {
-      return _.round(value - this.week_goal, 1);
-    }
+  calcDifference(value: number, multiplier = 1) {
+    return _.round(value - this.goal * multiplier, 2);
   }
 
   getDiffClass(diff) {
@@ -102,13 +102,5 @@ export class WeekComponent implements OnInit {
       this.reSubscribeService();
     }
     return true;
-  }
-
-  setWeekGoal() {
-    this.settings.goal.week = this.settings.goal.day * 5;
-  }
-
-  setDayGoal() {
-    this.settings.goal.day = _.round((this.settings.goal.week / 5), 1);
   }
 }

@@ -17,6 +17,6 @@ export class TimeToday {
   }
 
   millisToHours(millis) {
-    return _.round(millis / (1000 * 60 * 60), 1);
+    return _.round(millis / (1000 * 60 * 60), 2);
   }
 }
