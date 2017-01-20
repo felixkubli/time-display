@@ -20,6 +20,7 @@ import { NumberDiffPipe } from './utils/number_diff.pipe';
 import { WeekComponent } from './week/week.component';
 import { WeekService } from './week/week.service';
 import { AuthGuard } from './auth/auth.guard';
+import { NumberTimePipe } from './utils/number_time.pipe';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { AuthGuard } from './auth/auth.guard';
     DetailsComponent,
     WeekComponent,
     DateTodayPipe,
-    NumberDiffPipe
+    NumberDiffPipe,
+    NumberTimePipe
   ],
   providers: [
     ApiService,
