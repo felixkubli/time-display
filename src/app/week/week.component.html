@@ -1,5 +1,6 @@
 <div class="page-header">
-  <h1>Your Time this Week <span [class]="getDiffClass(total_diff, false)">{{total_diff | numberDiff}}</span>
+  <h1>Your Time this Week
+    <span [class]="getDiffClass(total_diff, false)">{{total_diff | numberDiff}} ({{total_diff | numberTime}})</span>
     <button (click)="reSubscribeService()" class="refresh btn btn-primary">
       <span class="glyphicon glyphicon-refresh"></span>
     </button>
@@ -9,7 +10,7 @@
 
 <div class="container">
   <div class="row">
-    <div *ngFor="let d of days">
+    <div *ngFor="let d of days.all">
       <div class="col-sm-2 text-center" *ngIf="d.time > 0">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -38,7 +39,7 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-10">
+    <div class="col-sm-{{2 * days.withValue}}">
       <progressbar [max]="progress.goal" [value]="progress.total_grand" [type]="progress.type">
         {{week.total_grand}} / {{progress.goal}}
       </progressbar>
@@ -58,13 +59,11 @@
       <div class="modal-body">
         <div class="form-inline goal-form">
           <label>Daily Goal</label>
-          <input type="number" class="form-control"
-            (keyup)="setWeekGoal()" [(ngModel)]="settings.goal.day" name="day">
-          <label>Weekly Goal</label>
-          <input type="number" class="form-control"
-            (keyup)="setDayGoal()" [(ngModel)]="settings.goal.week" name="week">
+          <input type="number" class="form-control" [(ngModel)]="settings.goal.day" name="day">
           <label>Select a Week</label>
           <input type="week" class="form-control" [(ngModel)]="settings.date" name="date">
+          <label>Number of days</label>
+          <input type="number" class="form-control" [(ngModel)]="settings.numOfDays" name="numOfDays">
           <button (click)="updated = setSettings(settings, settings.date)" class="btn btn-default">Update</button>
         </div>
         <div class="alert alert-success success" [hidden]="!updated">Your settings have been updated</div>

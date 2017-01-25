@@ -7,6 +7,7 @@ import { NumberDiffPipe } from '../utils/number_diff.pipe';
 import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { TimeTodayMock } from '../mock/time_today.mock';
+import { NumberTimePipe } from '../utils/number_time.pipe';
 
 describe('TimeTodayComponent', () => {
 
@@ -15,6 +16,7 @@ describe('TimeTodayComponent', () => {
       declarations: [
         TimeTodayComponent,
         DateTodayPipe,
+        NumberTimePipe,
         NumberDiffPipe
       ],
       imports: [
