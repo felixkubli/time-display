@@ -17,5 +17,5 @@ describe('NumberTimePipe', () => {
 
   it('responds to negative value', () => {
     expect(numberTime.transform(-2.25)).toEqual('2h 15min');
-  })
+  });
 });

@@ -3,4 +3,5 @@ export interface WeeklySettings {
         day: number;
     };
     date: string;
+    numOfDays: number;
 }

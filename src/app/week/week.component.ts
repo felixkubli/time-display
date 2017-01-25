@@ -15,6 +15,7 @@ import { Progress } from '../utils/progress';
 export class WeekComponent implements OnInit {
   days: any = {
     withValue: 1,
+    setValue: undefined,
     all: [
       { day: 'Monday', time: 0.1 },
       { day: 'Tuesday', time: null },
@@ -41,7 +42,8 @@ export class WeekComponent implements OnInit {
       goal: {
         day: this.goal,
       },
-      date: moment().format('YYYY-[W]WW')
+      date: moment().format('YYYY-[W]WW'),
+      numOfDays: undefined
     };
   }
 
@@ -62,6 +64,7 @@ export class WeekComponent implements OnInit {
     _.each(this.days.all, (day) => {
       day.diff = this.calcDifference(day.time);
     });
+    if (this.settings.numOfDays) { this.days.withValue = this.settings.numOfDays; }
     this.total_diff = this.calcDifference(this.week.total_grand, this.days.withValue);
     this.progress.getProgress(this.week.total_grand, this.goal * this.days.withValue, this.total_diff);
   }
@@ -72,12 +75,21 @@ export class WeekComponent implements OnInit {
   }
 
   mergeWeek(time: any[]) {
-    this.days.withValue = 0;
+    let value = 0;
     for (let i = 0; i < this.days.all.length; i++) {
       this.days.all[i].time = time[i];
       if (time[i] != null) {
-        this.days.withValue += 1;
+        value += 1;
       }
+    }
+    this.setNumberOfDays(value);
+  }
+
+  setNumberOfDays (value) {
+    if (this.days.setValue) {
+      this.days.withValue = this.days.setValue;
+    } else {
+      this.days.withValue = value;
     }
   }
 
@@ -96,6 +108,7 @@ export class WeekComponent implements OnInit {
   setSettings(settings: WeeklySettings, date: Date) {
     this.goal = settings.goal.day;
     this.date = date;
+    this.days.setValue = Math.abs(settings.numOfDays);
     localStorage.setItem('goal_today', this.goal + '');
     if (date) {
       localStorage.setItem('week', this.date + '');
