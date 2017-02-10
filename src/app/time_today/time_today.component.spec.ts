@@ -1,7 +1,7 @@
 import {TestBed, ComponentFixture} from '@angular/core/testing';
 
 import { TimeTodayComponent, TimeTodayService } from '../time_today';
-import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { Ng2BootstrapModule, ProgressbarConfig } from 'ng2-bootstrap';
 import { DateTodayPipe } from '../utils/date_today.pipe';
 import { NumberDiffPipe } from '../utils/number_diff.pipe';
 import { HttpModule } from '@angular/http';
@@ -25,6 +25,7 @@ describe('TimeTodayComponent', () => {
       ],
       providers: [
         TimeTodayService,
+        ProgressbarConfig
       ]
     });
   });
