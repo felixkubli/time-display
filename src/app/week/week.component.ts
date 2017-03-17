@@ -6,6 +6,7 @@ import { Week } from './week.model';
 import { WeeklySettings } from './weekly_settings.interface';
 import { SvgCalculator } from '../utils/svg_calculator';
 import { Progress } from '../utils/progress';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'my-week',
@@ -29,7 +30,7 @@ export class WeekComponent implements OnInit {
   progress: Progress = new Progress();
   goal: number;
   total_diff: number;
-  subscription;
+  subscription: Subscription;
   week: Week = new Week();
   settings: WeeklySettings;
   date: Date;
@@ -103,6 +104,16 @@ export class WeekComponent implements OnInit {
     } else {
       return 'difference negative';
     }
+  }
+
+  moveWeekUp() {
+    this.date = moment(this.date).add(1, 'week').toDate();
+    this.reSubscribeService();
+  }
+
+  moveWeekDown() {
+    this.date = moment(this.date).subtract(1, 'week').toDate();
+    this.reSubscribeService();
   }
 
   setSettings(settings: WeeklySettings, date: Date) {

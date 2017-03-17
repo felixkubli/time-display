@@ -6,7 +6,7 @@ import { Ng2BootstrapModule } from 'ng2-bootstrap';
 import { WeekService} from './week.service';
 import { HttpModule } from '@angular/http';
 
-fdescribe('WeekComponent', () => {
+describe('WeekComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -36,6 +36,6 @@ fdescribe('WeekComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  
+
 });
 
