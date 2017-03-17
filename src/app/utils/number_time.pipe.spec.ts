@@ -18,4 +18,8 @@ describe('NumberTimePipe', () => {
   it('responds to negative value', () => {
     expect(numberTime.transform(-2.25)).toEqual('2h 15min');
   });
+
+  it('receives undefined value', () => {
+    expect(numberTime.transform(undefined)).toEqual('0h 0min');
+  });
 });

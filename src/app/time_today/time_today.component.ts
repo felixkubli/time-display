@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TimeTodayService } from './time_today.service';
 import { TimeToday } from './time_today.model';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 
 @Component({
   selector: 'my-time-today',
@@ -43,6 +44,16 @@ export class TimeTodayComponent implements OnInit {
   reSubscribeService() {
     this.subscription.unsubscribe();
     this.subscription = this.subscribeToService();
+  }
+
+  moveDayUp() {
+    this.date = moment(this.date).add(1, 'day').toDate();
+    this.reSubscribeService();
+  }
+
+  moveDayDown() {
+    this.date = moment(this.date).subtract(1, 'day').toDate();
+    this.reSubscribeService();
   }
 
   getReached() {

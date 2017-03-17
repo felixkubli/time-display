@@ -4,7 +4,7 @@ import { TestBed, async, inject } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { TimeTodayComponent } from '../time_today/time_today.component';
-import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { Ng2BootstrapModule } from 'ng2-bootstrap';
 import { DateTodayPipe } from '../utils/date_today.pipe';
 import { NumberDiffPipe } from '../utils/number_diff.pipe';
 import { TimeTodayService } from '../time_today/time_today.service';
