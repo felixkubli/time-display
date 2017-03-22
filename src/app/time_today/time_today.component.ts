@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TimeTodayService } from './time_today.service';
 import { TimeToday } from './time_today.model';
 import * as _ from 'lodash';
-import * as moment from 'moment';
+import { Time } from '../time/time';
 
 @Component({
   selector: 'my-time-today',
@@ -11,26 +11,25 @@ import * as moment from 'moment';
   providers: [TimeToday]
 })
 
-export class TimeTodayComponent implements OnInit {
+export class TimeTodayComponent extends Time implements OnInit {
   difference_class: string = 'difference';
   progress_type: string = 'primary';
   reached: number = 0;
   difference;
   goal: number = 8.4;
-  date: Date;
   timeToday: TimeToday = new TimeToday();
-  subscription;
 
   constructor(private timeTodayService: TimeTodayService) {
+    super();
     this.goal = parseFloat(localStorage.getItem('goal_today')) || 0;
   }
 
   ngOnInit() {
-    this.subscription = this.subscribeToService();
+    this.subscribeService();
   }
 
-  subscribeToService() {
-    return this.timeTodayService.getEntries(this.date).subscribe(timeToday => {
+  subscribeService() {
+    this.serviceSubscription =  this.timeTodayService.getEntries(this.date).subscribe(timeToday => {
       this.updateValues(timeToday);
     });
   }
@@ -41,35 +40,20 @@ export class TimeTodayComponent implements OnInit {
     this.difference = this.getDifference();
   }
 
-  reSubscribeService() {
-    this.subscription.unsubscribe();
-    this.subscription = this.subscribeToService();
-  }
-
-  moveDayUp() {
-    this.date = moment(this.date).add(1, 'day').toDate();
-    this.reSubscribeService();
-  }
-
-  moveDayDown() {
-    this.date = moment(this.date).subtract(1, 'day').toDate();
-    this.reSubscribeService();
-  }
-
   getReached() {
     this.reached = this.timeToday.total_grand;
   }
 
-  public getDifference() {
+  getDifference() {
     this.difference = _.round((this.reached - this.goal), 2);
 
     if (this.difference < 0) {
-      this.difference_class = 'difference negative';
       this.progress_type = 'primary';
     } else if (this.difference >= 0) {
-      this.difference_class = 'difference positive';
       this.progress_type = 'success';
     }
+    this.difference_class = this.getDiffClass(this.difference);
+
     return this.difference;
   }
 
@@ -79,7 +63,7 @@ export class TimeTodayComponent implements OnInit {
       this.date = date;
       localStorage.setItem('goal_today', this.goal + '');
       localStorage.setItem('date', this.date + '');
-      this.reSubscribeService();
+      this.resubscribeService();
       return true;
     } else {
       return false;

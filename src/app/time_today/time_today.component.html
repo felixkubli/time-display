@@ -7,11 +7,11 @@
   </div>
   <div class="col-sm-3">
     <h3 class="text-right">
-      <button class="btn btn-link" (click)="moveDayDown()">
+      <button class="btn btn-link" (click)="moveDown(1, 'day')">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </button>
       <button (click)="reSubscribeService()" class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span></button>
-      <button class="btn btn-link" (click)="moveDayUp()">
+      <button class="btn btn-link" (click)="moveUp(1, 'day')">
         <span class="glyphicon glyphicon-chevron-right"></span>
       </button>
     </h3>

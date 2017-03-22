@@ -7,13 +7,14 @@ import { WeeklySettings } from './weekly_settings.interface';
 import { SvgCalculator } from '../utils/svg_calculator';
 import { Progress } from '../utils/progress';
 import { Subscription } from 'rxjs';
+import { Time } from '../time/time';
 
 @Component({
   selector: 'my-week',
   templateUrl: './week.component.html',
   styleUrls: ['./week.component.scss']
 })
-export class WeekComponent implements OnInit {
+export class WeekComponent extends Time implements OnInit {
   days: any = {
     withValue: 1,
     setValue: undefined,
@@ -30,13 +31,12 @@ export class WeekComponent implements OnInit {
   progress: Progress = new Progress();
   goal: number;
   total_diff: number;
-  subscription: Subscription;
   week: Week = new Week();
   settings: WeeklySettings;
-  date: Date;
   svg_calc: SvgCalculator;
 
   constructor(private weekService: WeekService) {
+    super();
     this.goal = +localStorage.getItem('goal_today');
     this.svg_calc = new SvgCalculator();
     this.settings = {
@@ -53,7 +53,7 @@ export class WeekComponent implements OnInit {
   }
 
   subscribeService() {
-    this.subscription = this.weekService.getEntrys(this.date)
+    this.serviceSubscription = this.weekService.getEntrys(this.date)
       .subscribe(response => {
         this.week = response;
         this.updateValues();
@@ -68,11 +68,6 @@ export class WeekComponent implements OnInit {
     if (this.settings.numOfDays) { this.days.withValue = this.settings.numOfDays; }
     this.total_diff = this.calcDifference(this.week.total_grand, this.days.withValue);
     this.progress.getProgress(this.week.total_grand, this.goal * this.days.withValue, this.total_diff);
-  }
-
-  reSubscribeService() {
-    this.subscription.unsubscribe();
-    this.subscribeService();
   }
 
   mergeWeek(time: any[]) {
@@ -98,24 +93,6 @@ export class WeekComponent implements OnInit {
     return _.round(value - this.goal * multiplier, 2);
   }
 
-  getDiffClass(diff) {
-    if (diff >= 0) {
-      return 'difference positive';
-    } else {
-      return 'difference negative';
-    }
-  }
-
-  moveWeekUp() {
-    this.date = moment(this.date).add(1, 'week').toDate();
-    this.reSubscribeService();
-  }
-
-  moveWeekDown() {
-    this.date = moment(this.date).subtract(1, 'week').toDate();
-    this.reSubscribeService();
-  }
-
   setSettings(settings: WeeklySettings, date: Date) {
     this.goal = settings.goal.day;
     this.date = date;
@@ -123,7 +100,7 @@ export class WeekComponent implements OnInit {
     localStorage.setItem('goal_today', this.goal + '');
     if (date) {
       localStorage.setItem('week', this.date + '');
-      this.reSubscribeService();
+      this.resubscribeService();
     }
     return true;
   }

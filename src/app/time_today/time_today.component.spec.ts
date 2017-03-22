@@ -62,7 +62,7 @@ describe('TimeTodayComponent', () => {
       });
 
       it('subscribe to service', () => {
-        component.subscribeToService();
+        component.subscribeService();
         expect(component.reached).toEqual(6.4);
       });
 
@@ -73,10 +73,10 @@ describe('TimeTodayComponent', () => {
 
       it('resubscribes to service', () => {
         component.ngOnInit();
-        let sub = component.subscription;
+        let sub = component['serviceSubscription'];
         expect(component.reached).toEqual(6.4);
-        component.reSubscribeService();
-        expect(component.subscription).not.toEqual(sub);
+        component['resubscribeService']();
+        expect(component['serviceSubscription']).not.toEqual(sub);
       });
     });
   });

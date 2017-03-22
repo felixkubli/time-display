@@ -23,7 +23,7 @@ export class TimeTodayService {
     }
     this.today = moment(date).format('YYYY-MM-DD');
 
-    this.setUrl();
+    this.generateUrl();
     // return this.http.get(this.mock) // this is the mock request
     //   .map(response => new TimeToday().deserialize(response.json()));
     return this.http.get(this.url, {headers: this.getHeaders()})
@@ -38,7 +38,7 @@ export class TimeTodayService {
     return headers;
   }
 
-  private setUrl(): string {
+  private generateUrl(): string {
     return this.url = 'https://toggl.com/reports/api/v2/summary?user_agent=time_display&since=' +
       this.today + '&until=' +
       this.today + '&workspace_id=' +
