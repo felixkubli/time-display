@@ -55,3 +55,6 @@ __build__/**
 .idea/
 *.swp
 npm-debug.log.2350151454
+
+# Distribution #
+/distribution/

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+echo "post build tasks"
+sed -i bak s/src=\"\\/js/src=\"js/g dist/index.html
+sed -i bak s/href=\"\\/css/href=\"css/g dist/index.html
+

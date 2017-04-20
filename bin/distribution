@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+mkdir distribution
+cp -rf node_modules/electron/dist/Electron.app/ distribution/Time\ Display.app/
+asar pack dist/ distribution/Time\ Display.app/Contents/Resources/app.asar
+
