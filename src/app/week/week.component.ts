@@ -127,4 +127,9 @@ export class WeekComponent implements OnInit {
     }
     return true;
   }
+
+  formattedDate() {
+    let date = moment(this.date).days(1);
+    return date.format('YYYY-MM-DD') + ' - ' + date.add(6, 'days').format('YYYY-MM-DD');
+  }
 }

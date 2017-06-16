@@ -17,7 +17,7 @@ const routes: Routes = [
     ]
   },
   { path: 'details', component: DetailsComponent },
-  { path: 'about', component: AboutComponent}
+  { path: 'about', component: AboutComponent }
 ];
 
 export const routing = RouterModule.forRoot(routes);

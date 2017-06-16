@@ -1,4 +1,5 @@
 <div class="page-header">
+  <p>{{ formattedDate() }}</p>
   <h1>Your Time this Week
     <span [class]="getDiffClass(total_diff, false)">{{total_diff | numberDiff}} ({{total_diff | numberTime}})</span>
     <button class="btn btn-link options-right" (click)="moveWeekDown()">
